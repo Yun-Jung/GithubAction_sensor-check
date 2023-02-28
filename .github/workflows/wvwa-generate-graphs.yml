@@ -57,6 +57,7 @@ jobs:
           rclone copy ${{ github.workspace }}/FCRCatwalkDataFigures_$(date '+%Y-%m-%d').pdf s3flare:wvwa-graphs/outputs/
           rclone copy ${{ github.workspace }}/CCRMetDataFigures_$(date '+%Y-%m-%d').pdf s3flare:wvwa-graphs/outputs/
           rclone copy ${{ github.workspace }}/CCRWaterQualityDataFigures_$(date '+%Y-%m-%d').pdf s3flare:wvwa-graphs/outputs/
+          
       - name: Send mail
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@v2
