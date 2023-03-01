@@ -24,20 +24,20 @@ Github Action for sensor check
 
 2. Download R script from S3 bucket or Github
 > From S3 bucket
-```yaml=25
+```yaml
      - name: Download R script from S3
         run: rclone copy s3flare:wvwa-graphs/scripts/wvwa-generate-graphs.R ${{ github.workspace }}
 
 ```
 > From Github
-```yaml=25
+```yaml
       - name: Download R script from GitHub
         run: wget https://raw.githubusercontent.com/FLARE-forecast/FCRE-data/wvwa-generate-graphs/wvwa-generate-graphs.R
 
 ```
 
 3. Log into Dockerhub with credentials set up in secrets
-```yaml=31
+```yaml
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -47,7 +47,7 @@ Github Action for sensor check
 ```
 
 4. Run docker to do prediction
-```yaml=37
+```yaml
      - name: Run automatic prediction file
         run:  | 
           docker run --rm -v ${{ github.workspace }}:/root/flare yjungku/wvwa-generate-graphs
@@ -55,7 +55,7 @@ Github Action for sensor check
 ```
 
 5. Commit files to repo
-```yaml=42
+```yaml
      - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -69,7 +69,7 @@ Github Action for sensor check
 ```
 
 6. Upload files to S3 bucket
-```yaml=52
+```yaml
      - name: Copy files to s3 buckets
         run: |
           rclone copy ${{ github.workspace }}/WeirDataFigures_$(date '+%Y-%m-%d').pdf s3flare:wvwa-graphs/outputs/
@@ -81,7 +81,7 @@ Github Action for sensor check
 ```
 
 7. Send email if there is a failure happened. Sender's email credentials is saved inside secrets.
-```yaml=61
+```yaml
 - name: Send mail
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@v2
