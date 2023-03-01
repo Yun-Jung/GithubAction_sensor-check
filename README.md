@@ -14,7 +14,7 @@ Github Action for sensor check
 
 ### Steps in Github Actions
 1. Set up rclone command by using config files from secrets
-```yaml=20
+```yaml
       - name: Setup Rclone
         uses: AnimMouse/setup-rclone@v1
         with:
